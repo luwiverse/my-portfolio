@@ -73,7 +73,7 @@ function App() {
           rotation={galaxyRotation}
           density={1.2}
           glowIntensity={0.35}
-          saturation={0}
+          saturation={1}
           starSpeed={0.5}
           rotationSpeed={0.05}
           mouseInteraction={true}
