@@ -227,11 +227,23 @@ function App() {
           id="contact"
           className={`contact-section reveal-section ${visibleSections.has("contact") ? "is-visible" : ""}`}
         >
-          <div className="contact-mark">LUWI<span>®</span></div>
-          <p className="section-kicker">Have a good idea?</p>
-          <h2>Let&apos;s make it<br /><em>real.</em></h2>
-          <a className="contact-email" href="mailto:agorluwi@gmail.com">agorluwi@gmail.com<span>↗</span></a>
-          <div className="contact-footer"><span>© 2025 Louis A.</span><span>Designed &amp; developed with curiosity</span><span>Scroll to explore ↑</span></div>
+          <div className="contact-panel">
+            <p className="section-kicker">Have a good idea?</p>
+            <h2>Get in Touch</h2>
+            <span className="contact-rule" aria-hidden="true" />
+            <p className="contact-description">Need a thoughtful build or want to collaborate? Message me.</p>
+            <div className="contact-socials">
+              <a className="contact-icon" href="mailto:agorluwi@gmail.com" aria-label="Email Louis">✉</a>
+              <a className="contact-icon" href="https://github.com/luwiverse" target="_blank" rel="noreferrer" aria-label="Louis on GitHub">
+                <svg aria-hidden="true"><use href="/icons.svg#github-icon" /></svg>
+              </a>
+            </div>
+            <div className="contact-details">
+              <a className="contact-email" href="mailto:agorluwi@gmail.com">agorluwi@gmail.com</a>
+              <span>© 2025 Louis A.</span>
+              <span>Designed &amp; developed with curiosity</span>
+            </div>
+          </div>
         </section>
       </main>
     </>
