@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import Galaxy from "./components/Galaxy/Galaxy";
 import profileImage from "./assets/profile-new.jpg";
 import aboutImage from "./assets/about-photo.png";
@@ -11,6 +11,11 @@ function App() {
   const [hideLoader, setHideLoader] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [visibleSections, setVisibleSections] = useState(() => new Set());
+
+  useLayoutEffect(() => {
+    window.history.scrollRestoration = "manual";
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -89,7 +94,7 @@ function App() {
           <div className="loader-content">
             <div className="loader-text">luwiverse</div>
 
-            <div className="loader-bar">
+            <div className="loader-bar" role="progressbar" aria-label="Loading" aria-valuemin="0" aria-valuemax="100">
               <div className="loader-progress"></div>
             </div>
           </div>
@@ -203,11 +208,9 @@ function App() {
           className={`content-section projects-section reveal-section ${visibleSections.has("projects") ? "is-visible" : ""}`}
         >
           <div className="section-label">02 / Selected work</div>
-          <div className="section-heading"><p className="section-kicker">A few things I&apos;ve made</p><h2>Built with intent.</h2></div>
+          <div className="section-heading"><h2>A few things I&apos;ve made</h2></div>
           <div className="project-grid">
-            <article className="project-card project-featured"><div className="project-art art-orbit"><span>CV</span><div className="orbit orbit-one" /><div className="orbit orbit-two" /><div className="orbit-core" /></div><div className="project-info"><div><span className="project-number">01</span><h3>Vision / Motion</h3></div><p>Making movement and visual data easier to understand.</p><span className="project-type">Computer vision</span></div></article>
-            <article className="project-card"><div className="project-art art-grid"><span className="grid-word">FLOW</span><div className="grid-shape" /></div><div className="project-info"><div><span className="project-number">02</span><h3>Flow State</h3></div><p>A focused space for better creative work.</p><span className="project-type">Product design</span></div></article>
-            <article className="project-card"><div className="project-art art-signal"><div className="signal-line" /><div className="signal-line" /><div className="signal-line" /></div><div className="project-info"><div><span className="project-number">03</span><h3>Signal / Noise</h3></div><p>Turning complex information into a clear next step.</p><span className="project-type">Full-stack build</span></div></article>
+              <article className="project-card project-featured"><div className="project-art project-image"><img src="/smart-violations.png" alt="Smart Violation login screen at Laguna State Polytechnic University" /></div><div className="project-info"><div><span className="project-number">01</span><h3>Smart Violation</h3></div><p>A campus-focused system for managing and monitoring violations.</p><div className="project-tags"><span>Flask</span><span>YOLOv8</span><span>RTSP</span><span>Chart.js</span><span>SQLite</span><span>Machine learning</span><span>NLP</span><span>SQL</span></div></div></article>
           </div>
         </section>
 
