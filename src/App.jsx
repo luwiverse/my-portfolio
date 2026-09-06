@@ -227,7 +227,7 @@ function App() {
           <div className="contact-mark">LUWI<span>®</span></div>
           <p className="section-kicker">Have a good idea?</p>
           <h2>Let&apos;s make it<br /><em>real.</em></h2>
-          <a className="contact-email" href="mailto:hello@luwi.dev">hello@luwi.dev <span>↗</span></a>
+          <a className="contact-email" href="mailto:agorluwi@gmail.com">agorluwi@gmail.com<span>↗</span></a>
           <div className="contact-footer"><span>© 2025 Louis A.</span><span>Designed &amp; developed with curiosity</span><span>Scroll to explore ↑</span></div>
         </section>
       </main>
