@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Galaxy from "./components/Galaxy/Galaxy";
 import profileImage from "./assets/profile-new.jpg";
+import aboutImage from "./assets/about-photo.png";
 
 const galaxyFocal = [0.5, 0.5];
 const galaxyRotation = [1.0, 0.0];
@@ -9,6 +10,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [hideLoader, setHideLoader] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [visibleSections, setVisibleSections] = useState(() => new Set());
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -36,6 +38,30 @@ function App() {
       clearTimeout(timer);
       window.removeEventListener("scroll", handleScroll);
     };
+  }, []);
+
+  useEffect(() => {
+    const sections = document.querySelectorAll(".reveal-section");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const enteringSections = entries
+          .filter((entry) => entry.isIntersecting)
+          .map((entry) => entry.target.id);
+
+        if (enteringSections.length > 0) {
+          setVisibleSections((currentSections) => {
+            const nextSections = new Set(currentSections);
+            enteringSections.forEach((sectionId) => nextSections.add(sectionId));
+            return nextSections;
+          });
+        }
+      },
+      { threshold: 0.18, rootMargin: "0px 0px -8%" },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -86,10 +112,10 @@ function App() {
         </a>
 
         <div className="nav-links">
-          <a href="#home">Home</a>
-          <a href="#about">About</a>
-          <a href="#projects">Projects</a>
-          <a href="#certifications">Certifications</a>
+          <a href="#home" aria-label="Home" data-tooltip="Home"><span aria-hidden="true">⌂</span></a>
+          <a href="#about" aria-label="About" data-tooltip="About"><span aria-hidden="true">◎</span></a>
+          <a href="#projects" aria-label="Projects" data-tooltip="Projects"><span aria-hidden="true">▦</span></a>
+          <a href="#certifications" aria-label="Certifications" data-tooltip="Certifications"><span aria-hidden="true">✦</span></a>
         </div>
 
         <a href="#contact" className="contact-link">
@@ -99,7 +125,10 @@ function App() {
 
       {/* CONTENT */}
       <main>
-        <section id="home" className="home-section">
+        <section
+          id="home"
+          className={`home-section reveal-section ${visibleSections.has("home") ? "is-visible" : ""}`}
+        >
           <div className="home-content">
             <p className="eyebrow"><span className="status-dot" /> Available for thoughtful builds</p>
 
@@ -147,21 +176,32 @@ function App() {
           </div>
         </section>
 
-        <section id="about" className="content-section about-section">
-          <div className="section-label">01 / About</div>
-          <div className="about-copy">
-            <p className="section-kicker">Curious by default</p>
-            <h2>Technology should feel <em>human.</em></h2>
-            <p>I care about the space between a clever idea and a useful product. My work moves from data and models to interfaces that feel clear, considered, and genuinely good to use.</p>
-            <div className="stats-row">
-              <div><strong>03+</strong><span>Years learning<br />&amp; building</span></div>
-              <div><strong>∞</strong><span>Questions worth<br />exploring</span></div>
+        <section
+          id="about"
+          className={`content-section about-section reveal-section ${visibleSections.has("about") ? "is-visible" : ""}`}
+        >
+          <div className="about-heading">
+            <p className="section-kicker">A little about me</p>
+            <h2>About <em>Me</em></h2>
+            <span className="about-heading-rule" aria-hidden="true" />
+          </div>
+          <div className="about-content">
+            <div className="about-portrait-wrap">
+              <div className="about-portrait-ring">
+                <img src={aboutImage} alt="Portrait of Louis A." />
+              </div>
+            </div>
+            <div className="about-copy">
+              <p><strong>Louis A.</strong> is a full-stack developer who enjoys turning curious ideas into useful digital experiences.</p>
+              <p>From machine learning and computer vision to thoughtful interfaces, I build with equal parts precision, experimentation, and care.</p>
             </div>
           </div>
-          <div className="about-aside"><span>Currently exploring</span><strong>Machine perception<br />+ human connection</strong><div className="aside-rule" /></div>
         </section>
 
-        <section id="projects" className="content-section projects-section">
+        <section
+          id="projects"
+          className={`content-section projects-section reveal-section ${visibleSections.has("projects") ? "is-visible" : ""}`}
+        >
           <div className="section-label">02 / Selected work</div>
           <div className="section-heading"><p className="section-kicker">A few things I&apos;ve made</p><h2>Built with intent.</h2></div>
           <div className="project-grid">
@@ -171,13 +211,19 @@ function App() {
           </div>
         </section>
 
-        <section id="certifications" className="content-section certifications-section">
+        <section
+          id="certifications"
+          className={`content-section certifications-section reveal-section ${visibleSections.has("certifications") ? "is-visible" : ""}`}
+        >
           <div className="section-label">03 / Credentials</div>
           <div className="cert-intro"><p className="section-kicker">Always in progress</p><h2>Proof of <em>practice.</em></h2></div>
           <div className="cert-list"><div className="cert-item"><span>2025</span><strong>Full Stack Development</strong><small>Web technologies &amp; application architecture</small><b>↗</b></div><div className="cert-item"><span>2024</span><strong>Machine Learning Foundations</strong><small>Models, data, and responsible experimentation</small><b>↗</b></div><div className="cert-item"><span>2023</span><strong>Computer Science Graduate</strong><small>Systems thinking, built from the ground up</small><b>↗</b></div></div>
         </section>
 
-        <section id="contact" className="contact-section">
+        <section
+          id="contact"
+          className={`contact-section reveal-section ${visibleSections.has("contact") ? "is-visible" : ""}`}
+        >
           <div className="contact-mark">LUWI<span>®</span></div>
           <p className="section-kicker">Have a good idea?</p>
           <h2>Let&apos;s make it<br /><em>real.</em></h2>
