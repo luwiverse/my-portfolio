@@ -111,8 +111,6 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-
-  border-bottom: 1px solid #222;
 }
 
 section h1 {
@@ -321,7 +319,7 @@ nav { width: min(1240px, calc(100% - 48px)); height: 68px; padding: 9px 10px 9px
 .contact-link span { display: grid; place-items: center; width: 21px; height: 21px; color: var(--ink); background: var(--amber); border-radius: 50%; font-size: .78rem; line-height: 1; }
 .scroll-progress { background: rgba(255,255,255,.08); }
 .scroll-progress-fill { background: var(--amber); box-shadow: 0 0 12px var(--amber); }
-section { border-bottom: 1px solid var(--line); }
+section { border-bottom: 0; }
 .home-section { min-height: 100vh; max-width: 1440px; margin: auto; padding: 130px clamp(24px,9vw,150px) 80px; }
 .home-content { max-width: 680px; animation: rise .9s ease both; }
 .eyebrow, .section-kicker, .section-label, .project-type, .hero-meta, .profile-note, .cert-item > span, .cert-item small { font-family: 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .12em; }
