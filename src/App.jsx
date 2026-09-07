@@ -1,21 +1,31 @@
 import { useEffect, useLayoutEffect, useState } from "react";
-import Galaxy from "./components/Galaxy/Galaxy";
 import profileImage from "./assets/profile-new.jpg";
 import aboutImage from "./assets/about-photo.png";
-
-const galaxyFocal = [0.5, 0.5];
-const galaxyRotation = [1.0, 0.0];
 
 function App() {
   const [loading, setLoading] = useState(true);
   const [hideLoader, setHideLoader] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [visibleSections, setVisibleSections] = useState(() => new Set());
+  const [isLightTheme, setIsLightTheme] = useState(() => {
+    const savedTheme = window.localStorage.getItem("portfolio-theme");
+
+    if (savedTheme) {
+      return savedTheme === "light";
+    }
+
+    return window.matchMedia("(prefers-color-scheme: light)").matches;
+  });
 
   useLayoutEffect(() => {
     window.history.scrollRestoration = "manual";
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("light-theme", isLightTheme);
+    window.localStorage.setItem("portfolio-theme", isLightTheme ? "light" : "dark");
+  }, [isLightTheme]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -71,31 +81,20 @@ function App() {
 
   return (
     <>
-      {/* GALAXY BACKGROUND */}
-      <div className="galaxy-background">
-        <Galaxy
-          focal={galaxyFocal}
-          rotation={galaxyRotation}
-          density={1.2}
-          glowIntensity={0.35}
-          saturation={1}
-          starSpeed={0.5}
-          rotationSpeed={0.05}
-          mouseInteraction={true}
-          mouseRepulsion={true}
-          repulsionStrength={2}
-          twinkleIntensity={0.4}
-        />
+      {/* AMBIENT BACKGROUND */}
+      <div className="ambient-background" aria-hidden="true">
+        <span className="ambient-scan" />
       </div>
 
       {/* LOADING SCREEN */}
       {loading && (
         <div className={`loader ${hideLoader ? "loader-hide" : ""}`}>
           <div className="loader-content">
-            <div className="loader-text">luwiverse</div>
-
-            <div className="loader-bar" role="progressbar" aria-label="Loading" aria-valuemin="0" aria-valuemax="100">
-              <div className="loader-progress"></div>
+            <div className="loader-text" aria-label="LUWI">
+              <div className="loader-row"><strong>L</strong><span>Listen</span></div>
+              <div className="loader-row"><strong>U</strong><span>Understand</span></div>
+              <div className="loader-row"><strong>W</strong><span>Work</span></div>
+              <div className="loader-row"><strong>I</strong><span>Innovate</span></div>
             </div>
           </div>
         </div>
@@ -123,10 +122,22 @@ function App() {
           <a href="#certifications" aria-label="Certifications" data-tooltip="Certifications"><span aria-hidden="true">✦</span></a>
         </div>
 
-        <a href="#contact" className="contact-link">
-          Let&apos;s talk <span aria-hidden="true">↗</span>
-        </a>
+        <div className="nav-actions">
+          <a href="#contact" className="contact-link">
+            Let&apos;s talk <span aria-hidden="true">↗</span>
+          </a>
+        </div>
       </nav>
+
+      <button
+        className="theme-toggle"
+        type="button"
+        aria-label={`Switch to ${isLightTheme ? "dark" : "light"} theme`}
+        data-tooltip={isLightTheme ? "Dark theme" : "Light theme"}
+        onClick={() => setIsLightTheme((currentTheme) => !currentTheme)}
+      >
+        <span aria-hidden="true">{isLightTheme ? "☾" : "☼"}</span>
+      </button>
 
       {/* CONTENT */}
       <main>
@@ -209,8 +220,9 @@ function App() {
         >
           <div className="section-label">02 / Selected work</div>
           <div className="section-heading"><h2>A few things I&apos;ve made</h2></div>
-          <div className="project-grid">
+            <div className="project-grid">
               <article className="project-card project-featured"><div className="project-art project-image"><img src="/smart-violations.png" alt="Smart Violation login screen at Laguna State Polytechnic University" /></div><div className="project-info"><div><span className="project-number">01</span><h3>Smart Violation</h3></div><p>A campus-focused system for managing and monitoring violations.</p><div className="project-tags"><span>Flask</span><span>YOLOv8</span><span>RTSP</span><span>Chart.js</span><span>SQLite</span><span>Machine learning</span><span>NLP</span><span>SQL</span></div></div></article>
+              <article className="project-card"><div className="project-art art-grid"><span className="grid-word">RAG</span><span className="grid-shape" aria-hidden="true" /></div><div className="project-info"><div><span className="project-number">02</span><h3>RAG Prototype</h3></div><p>An experiment in grounding intelligent answers with relevant knowledge.</p><div className="project-tags"><span>Python</span><span>Embeddings</span><span>Retrieval</span><span>LLM</span></div></div></article>
           </div>
         </section>
 
