@@ -484,7 +484,8 @@ h2 { font-size: clamp(2.6rem,5vw,5.4rem); letter-spacing: -.07em; }
 .project-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
 .project-tags span { padding: 8px 13px; border: 1px solid rgba(122,169,255,.45); border-radius: 999px; background: rgba(63,58,91,.72); color: #f0eff8; font-family: 'DM Mono',monospace; font-size: .58rem; line-height: 1; transition: border-color .3s ease, background .3s ease; }
 .project-card:hover .project-tags span { border-color: rgba(246,174,75,.55); background: rgba(63,58,91,.95); }
-.certifications-section { display: grid; grid-template-columns: .8fr 1fr 1.5fr; gap: 6vw; min-height: 75vh; }
+.certifications-section { display: grid; place-items: center; min-height: 75vh; }
+.cert-wip { color: var(--amber); font-family: 'DM Mono', monospace; font-size: clamp(7rem, 25vw, 22rem); font-weight: 700; line-height: .8; letter-spacing: -.12em; text-shadow: 0 0 45px rgba(246,174,75,.25); }
 .cert-list { margin-top: 60px; }
 .cert-item { display: grid; grid-template-columns: 65px 1fr 35px; gap: 12px; align-items: center; padding: 22px 0; border-top: 1px solid var(--line); }
 .cert-item > span { color: var(--amber); font-size: .57rem; }

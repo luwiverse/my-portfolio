@@ -230,9 +230,7 @@ function App() {
           id="certifications"
           className={`content-section certifications-section reveal-section ${visibleSections.has("certifications") ? "is-visible" : ""}`}
         >
-          <div className="section-label">03 / Credentials</div>
-          <div className="cert-intro"><p className="section-kicker">Always in progress</p><h2>Proof of <em>practice.</em></h2></div>
-          <div className="cert-list"><div className="cert-item"><span>2025</span><strong>Full Stack Development</strong><small>Web technologies &amp; application architecture</small><b>↗</b></div><div className="cert-item"><span>2024</span><strong>Machine Learning Foundations</strong><small>Models, data, and responsible experimentation</small><b>↗</b></div><div className="cert-item"><span>2023</span><strong>Computer Science Graduate</strong><small>Systems thinking, built from the ground up</small><b>↗</b></div></div>
+          <div className="cert-wip" aria-label="Certifications work in progress">WIP</div>
         </section>
 
         <section
