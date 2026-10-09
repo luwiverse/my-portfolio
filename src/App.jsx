@@ -230,7 +230,45 @@ function App() {
           id="certifications"
           className={`content-section certifications-section reveal-section ${visibleSections.has("certifications") ? "is-visible" : ""}`}
         >
-          <div className="cert-wip" aria-label="Certifications work in progress">WIP</div>
+          <div className="cert-intro">
+            <div className="section-label">03 / Training &amp; Certifications</div>
+          </div>
+          <div className="cert-list">
+            <article className="cert-card">
+              <span className="cert-card-number">01</span>
+              <h3>Creating Visual Studio Using OBS, Filmora and Corel</h3>
+              <div className="cert-card-meta">
+                <span>Miso Provincial Office</span>
+                <span>May 2024</span>
+              </div>
+            </article>
+            <a
+              className="cert-card"
+              href="https://www.credly.com/badges/94161ac3-bbfe-4676-b416-511a57ce76e7/public_url"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <span className="cert-card-number">02</span>
+              <h3>Cisco — Python Essentials 1</h3>
+              <div className="cert-card-meta">
+                <span>Cisco Networking Academy</span>
+                <span>2026</span>
+              </div>
+            </a>
+            <a
+              className="cert-card"
+              href="https://www.credly.com/badges/ef7f8718-dc23-41d5-878a-c4432f27d7bd/public_url"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <span className="cert-card-number">03</span>
+              <h3>Prompt Like an Engineer</h3>
+              <div className="cert-card-meta">
+                <span>Cisco Networking Academy</span>
+                <span>2026</span>
+              </div>
+            </a>
+          </div>
         </section>
 
         <section
